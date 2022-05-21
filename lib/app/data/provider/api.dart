@@ -3,7 +3,7 @@ import 'package:snkrs_flutter/app/data/modules/snkrs_item/model.dart';
 
 class ApiProvider extends GetConnect {
   ApiProvider() {
-    baseUrl = 'https://e339-61-77-35-68.jp.ngrok.io';
+    baseUrl = 'https://4181-61-77-35-68.jp.ngrok.io';
   }
 
   Future<List<SnkrsItem>> getSnkrsItems() async {
