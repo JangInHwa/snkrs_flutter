@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:snkrs_flutter/app/data/modules/snkrs_item/model.dart';
 import 'package:snkrs_flutter/app/widgets/button/small.dart';
 
@@ -22,7 +20,7 @@ class SnkrsItemCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 3,
             blurRadius: 16,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -31,7 +29,7 @@ class SnkrsItemCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.network(item.imageUrl, height: 300, fit: BoxFit.fill),
+            Image.network(item.imageUrl, height: 400, fit: BoxFit.cover),
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(20),
@@ -46,7 +44,7 @@ class SnkrsItemCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SmallTextButton(text: '예약하기'),
+                  const SmallTextButton(text: '예약하기'),
                 ],
               ),
             )
