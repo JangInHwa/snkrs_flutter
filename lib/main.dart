@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return GetCupertinoApp(
       title: 'SNKRS',
       debugShowCheckedModeBanner: false,
-      theme: CupertinoThemeData(brightness: Brightness.light),
+      theme: const CupertinoThemeData(brightness: Brightness.light),
       getPages: AppPages.pages,
       initialRoute: Routes.ROOT,
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:snkrs_flutter/app/data/modules/snkrs_item/controller.dart';
 import 'package:snkrs_flutter/app/pages/feed/widgets/snkrs_item_card.dart';

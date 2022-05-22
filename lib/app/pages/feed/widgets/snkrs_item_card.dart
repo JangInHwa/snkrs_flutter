@@ -44,7 +44,7 @@ class _SnkrsItemCardState extends State<SnkrsItemCard> with SingleTickerProvider
   }
 
   void onTapUp() {
-    if (isTapDown == true) {
+    if (isTapDown) {
       isTapDown = false;
       _controller.reverse();
     }
