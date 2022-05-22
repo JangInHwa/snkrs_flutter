@@ -15,7 +15,7 @@ class SnkrsItemCard extends StatefulWidget {
 }
 
 class _SnkrsItemCardState extends State<SnkrsItemCard> with SingleTickerProviderStateMixin {
-  final double _interactionScale = 0.97;
+  final double _interactionScale = 0.96;
   late AnimationController _controller;
   late Animation _scaleAnimation;
   bool isTapDownAnimateDone = false;
@@ -23,12 +23,12 @@ class _SnkrsItemCardState extends State<SnkrsItemCard> with SingleTickerProvider
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 150))
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 200))
       ..addListener(() {
         setState(() {});
       });
 
-    _scaleAnimation = Tween(begin: 1.0, end: _interactionScale).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _scaleAnimation = Tween(begin: 1.0, end: _interactionScale).animate(CurvedAnimation(parent: _controller, curve: Curves.ease));
     super.initState();
   }
 
@@ -38,43 +38,38 @@ class _SnkrsItemCardState extends State<SnkrsItemCard> with SingleTickerProvider
     super.dispose();
   }
 
-  Future onTapDown() async {
+  void onTapDown() {
     isTapDown = true;
-    isTapDownAnimateDone = false;
-    await _controller.forward();
-    isTapDownAnimateDone = true;
-    if (isTapDown == false) {
-      _controller.reverse();
-    }
+    _controller.forward();
   }
 
-  Future onTapUp() async {
-    isTapDown = false;
-    if (isTapDownAnimateDone == true) {
-      await _controller.reverse();
+  void onTapUp() {
+    if (isTapDown == true) {
+      isTapDown = false;
+      _controller.reverse();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (_) => onTapDown(),
-      onTapUp: (_) => onTapUp(),
-      onTapCancel: () => onTapUp(),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(16)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 16,
-              blurRadius: 40,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Transform.scale(
-          scale: _scaleAnimation.value,
+    return Listener(
+      onPointerDown: (_) => onTapDown(),
+      onPointerUp: (_) => onTapUp(),
+      onPointerMove: (_) => onTapUp(),
+      child: Transform.scale(
+        scale: _scaleAnimation.value,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(16)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 16,
+                blurRadius: 40,
+                offset: const Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Column(
